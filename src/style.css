@@ -1,0 +1,289 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  color: #00d4ff;
+  letter-spacing: 1px;
+}
+
+header .subtitle {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #16213e;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.toolbar-group label {
+  font-size: 0.78rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button {
+  padding: 6px 14px;
+  border: 1px solid #0f3460;
+  background: #0f3460;
+  color: #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.15s;
+}
+
+button:hover {
+  background: #1a5276;
+  border-color: #00d4ff;
+}
+
+button.active {
+  background: #00d4ff;
+  color: #1a1a2e;
+  border-color: #00d4ff;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+select, input[type="number"] {
+  padding: 5px 8px;
+  border: 1px solid #0f3460;
+  background: #0a1628;
+  color: #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.82rem;
+}
+
+input[type="number"] {
+  width: 80px;
+}
+
+input[type="range"] {
+  width: 80px;
+  accent-color: #00d4ff;
+}
+
+#speed-label {
+  font-size: 0.78rem;
+  color: #888;
+  min-width: 30px;
+}
+
+/* Main container */
+.main-container {
+  display: flex;
+  gap: 12px;
+}
+
+#canvas {
+  flex: 1;
+  background: #fafafa;
+  border-radius: 8px;
+  cursor: crosshair;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  min-height: 500px;
+}
+
+.info-panel {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.info-panel > div {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.info-panel h3 {
+  font-size: 0.85rem;
+  color: #00d4ff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-panel p {
+  font-size: 0.82rem;
+  color: #bbb;
+  margin-bottom: 4px;
+}
+
+.info-panel span {
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #0a1628;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+#progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #0f3460);
+  border-radius: 3px;
+  transition: width 0.2s;
+}
+
+/* SVG drawing styles */
+.target-curve {
+  fill: none;
+  stroke: #e74c3c;
+  stroke-width: 2.5;
+  stroke-dasharray: 6, 3;
+}
+
+.target-point {
+  fill: #e74c3c;
+  cursor: move;
+}
+
+.target-point:hover {
+  fill: #ff6b6b;
+}
+
+.control-handle {
+  fill: #f39c12;
+  stroke: #fff;
+  stroke-width: 1;
+  cursor: move;
+}
+
+.control-line {
+  stroke: #f39c12;
+  stroke-width: 1;
+  stroke-dasharray: 3, 3;
+  opacity: 0.6;
+}
+
+.linkage-link {
+  stroke: #2c3e50;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.linkage-joint {
+  fill: #3498db;
+  stroke: #2c3e50;
+  stroke-width: 1.5;
+}
+
+.linkage-ground {
+  fill: #e67e22;
+  stroke: #2c3e50;
+  stroke-width: 1.5;
+}
+
+.linkage-output {
+  fill: #e74c3c;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.output-trace {
+  fill: none;
+  stroke: #27ae60;
+  stroke-width: 2;
+  opacity: 0.8;
+}
+
+.crank-indicator {
+  fill: none;
+  stroke: #9b59b6;
+  stroke-width: 1;
+  stroke-dasharray: 3, 2;
+  opacity: 0.5;
+}
+
+.exclusion-zone {
+  fill: rgba(231, 76, 60, 0.15);
+  stroke: #e74c3c;
+  stroke-width: 2;
+  stroke-dasharray: 8, 4;
+}
+
+.exclusion-zone-open {
+  fill: rgba(231, 76, 60, 0.08);
+  stroke: #e74c3c;
+  stroke-width: 1.5;
+  stroke-dasharray: 4, 4;
+}
+
+.zone-vertex {
+  fill: #c0392b;
+  stroke: #fff;
+  stroke-width: 1.5;
+  cursor: move;
+}
+
+.zone-vertex:hover {
+  fill: #e74c3c;
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+  }
+  .info-panel {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .info-panel > div {
+    flex: 1;
+    min-width: 200px;
+  }
+}
